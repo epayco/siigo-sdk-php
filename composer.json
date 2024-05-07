@@ -1,0 +1,21 @@
+{
+    "name": "sergio/sdk-php-siigo",
+    "description": "PHP SDK for siigo connection",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^7.8",
+        "php": "^8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sergio\\SdkPhpSiigo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "sergio rios",
+            "email": "sergio.rios@epayco.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
