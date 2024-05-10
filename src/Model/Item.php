@@ -6,14 +6,17 @@ use Sergio\SdkPhpSiigo\Model\Tax;
 
 class Item
 {
-    public function __construct(
-        private string $code,
-        private string $description,
-        private int $quantity,
-        private float $price,
-        private float $discount,
-        private array $taxes
-    ) {}
+    private string $code;
+
+    private string $description;
+
+    private int $quantity;
+
+    private float $price;
+
+    private float $discount;
+
+    private array $taxes;
 
     /**
      * @return string

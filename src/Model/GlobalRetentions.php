@@ -2,7 +2,10 @@
 
 namespace Sergio\SdkPhpSiigo\Model;
 
-class InvoiceDocument
+/**
+ *
+ */
+class GlobalRetentions
 {
     private int $id;
 
@@ -16,11 +19,10 @@ class InvoiceDocument
 
     /**
      * @param int $id
-     * @return $this
+     * @return void
      */
-    public function setId(int $id): static
+    public function setId(int $id): void
     {
         $this->id = $id;
-        return $this;
     }
 }

@@ -10,7 +10,7 @@ use Sergio\SdkPhpSiigo\Model\Customer as CustomerModel;
 final class Customer extends AbstractApi
 {
     /**
-     * @param array $query ['page' => 1, 'page_size' => 10, 'identification' => '']
+     * @param array $query ['page' => 1, 'page_size' => 10, 'identification' => '', ...]
      * @return ResponseInterface
      * @throws GuzzleException
      * @see https://siigoapi.docs.apiary.io/#reference/clientes/consultar-cliente/consultar-cliente
@@ -41,7 +41,11 @@ final class Customer extends AbstractApi
     }
 
     /**
+     * @param string $id
+     * @param CustomerModel $customer
+     * @return ResponseInterface
      * @throws GuzzleException
+     * @see https://siigoapi.docs.apiary.io/#reference/clientes/actualizar-cliente
      */
     public function update(string $id, CustomerModel $customer): ResponseInterface
     {
