@@ -8,21 +8,39 @@ require_once 'Client.php';
 
 try {
     $client = new Client();
-    $customer = new Customer($client);
-    $response = $customer->getAll();
-    $body = json_decode((string) $response->getBody(), true);
+    $customerApi = new Customer($client);
 
-    $responseCreate = $customer->create(createCustomerModel());
-    $bodyCreate = json_decode((string) $responseCreate->getBody(), true);
+    // get client for identification
+    $responseCustomer = $customerApi->getAll(['identification' => '141222333', 'page' => 1, 'page_size' => 1]);
+    $body = json_decode((string) $responseCustomer->getBody(), true);
 
-    return $body;
+
+    // create client if not exists
+    if (!empty($body['results'])) {
+        $customer = $body['results'][0];
+    } else {
+        $responseCreateCustomer = $customerApi->create(createCustomerModel());
+        $bodyCreate = json_decode((string) $responseCreateCustomer->getBody(), true);
+        $customer = $bodyCreate;
+    }
+
+    // update client
+    $responseUpdateCustomer = $customerApi->update($customer['id'], createCustomerModel());
+    $bodyUpdateCustomer = json_decode((string) $responseUpdateCustomer->getBody(), true);
+
+
+
+
+    return;
 }catch (\GuzzleHttp\Exception\ClientException $e) {
     $responseError = $e->getResponse()->getBody();
     $body = json_decode((string) $responseError, true);
     echo $responseError;
+    return;
 }catch (Exception $ex) {
     var_dump($ex->getMessage());
     echo $ex->getMessage();
+    return;
 }
 
 function createCustomerModel()
@@ -37,7 +55,7 @@ function createCustomerModel()
     $customer->setType('Customer')
         ->setPersonType('Person')
         ->setIdType('13')
-        ->setIdentification('123456789')
+        ->setIdentification('141222333')
         ->setName('John')
         ->setLastName('Doe')
         ->setCommercialName('John Doe commercial name')

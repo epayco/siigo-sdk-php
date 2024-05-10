@@ -17,8 +17,8 @@ class Client
             'base_uri' => 'https://api.siigo.com/',
         ]);
 
-        $this->siigoAccessKey = 'YWMxOWMwZWMtYjNkNS00ZTMxLTkwMjUtMWM2Y2I0NzJiYzY2OixhKj01R2E9N1c=';
-        $this->username = 'siigoapi@pruebas.com';
+        $this->siigoAccessKey = '';
+        $this->username = '';
         $this->headers = [
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
@@ -37,7 +37,7 @@ class Client
     {
         try {
             if ($this->getToken()) {
-                $this->headers['Authorization'] = 'Bearer ' . $this->token;
+                $this->headers['Authorization'] = 'Bearer ' . $this->getToken();
             } else {
                 $this->login();
             }

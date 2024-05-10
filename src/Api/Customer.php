@@ -10,18 +10,14 @@ use Sergio\SdkPhpSiigo\Model\Customer as CustomerModel;
 final class Customer extends AbstractApi
 {
     /**
-     * @param int $page
-     * @param int $size
+     * @param array $query ['page' => 1, 'page_size' => 10, 'identification' => '']
      * @return ResponseInterface
      * @throws GuzzleException
      * @see https://siigoapi.docs.apiary.io/#reference/clientes/consultar-cliente/consultar-cliente
      */
-    public function getAll(int $page = 1, int $size = 15): ResponseInterface
+    public function getAll(array $query = []): ResponseInterface
     {
-        $query = http_build_query([
-            'page' => $page,
-            'page_size' => $size,
-        ]);
+        $query = http_build_query($query);
 
         return $this
             ->getClient()
@@ -37,7 +33,28 @@ final class Customer extends AbstractApi
      */
     public function create(CustomerModel $customer): ResponseInterface
     {
-        $data = [
+        $data = $this->fillModel($customer);
+
+        return $this
+            ->getClient()
+            ->request('POST', sprintf('%s/customers', self::API_VERSION), $data);
+    }
+
+    /**
+     * @throws GuzzleException
+     */
+    public function update(string $id, CustomerModel $customer): ResponseInterface
+    {
+        $data = $this->fillModel($customer);
+
+        return $this
+            ->getClient()
+            ->request('PUT', sprintf('%s/customers/%s', self::API_VERSION, $id), $data);
+    }
+
+    private function fillModel(CustomerModel $customer): array
+    {
+        return [
             'type' => $customer->getType(),
             'person_type' => $customer->getPersonType(),
             'id_type' => $customer->getIdType(),
@@ -78,9 +95,5 @@ final class Customer extends AbstractApi
                 ];
             }, $customer->getContacts()),
         ];
-
-        return $this
-            ->getClient()
-            ->request('POST', sprintf('%s/customers', self::API_VERSION), $data);
     }
 }
