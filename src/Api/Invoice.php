@@ -37,7 +37,7 @@ final class Invoice extends AbstractApi
 
         return $this
             ->getClient()
-            ->request('POST', sprintf('%s/customers', self::API_VERSION), $data);
+            ->request('POST', sprintf('%s/invoices', self::API_VERSION), $data);
     }
 
     public function update(string $id, InvoiceModel $invoice): ResponseInterface
@@ -87,7 +87,7 @@ final class Invoice extends AbstractApi
                 return [
                     "id" => $retention->getId(),
                 ];
-            }, $invoice->getRetentions())
+            }, $invoice->getGlobalRetentions())
         ];
     }
 }

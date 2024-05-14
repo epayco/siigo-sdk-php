@@ -17,8 +17,8 @@ class Client
             'base_uri' => 'https://api.siigo.com/',
         ]);
 
-        $this->siigoAccessKey = '';
-        $this->username = '';
+        $this->siigoAccessKey = 'NDllMzI0NmEtNjExZC00NGM3LWE3OTQtMWUyNTNlZWU0ZTM0OkosU2MwLD4xQ08=';
+        $this->username = 'sandbox@siigoapi.com';
         $this->headers = [
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',

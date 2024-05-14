@@ -14,9 +14,12 @@ class Item
 
     private float $price;
 
-    private float $discount;
+    private float $discount = 0;
 
-    private array $taxes;
+    /**
+     * @var Tax[]
+     */
+    private array $taxes = [];
 
     /**
      * @return string

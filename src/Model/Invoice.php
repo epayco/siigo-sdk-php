@@ -8,7 +8,7 @@ class Invoice
 
     private InvoiceDocument $document;
 
-    private int $seller;
+    private ?int $seller = null;
 
     private string $observations;
 
@@ -27,7 +27,7 @@ class Invoice
     /**
      * @var GlobalRetentions[]
      */
-    private array $globalRetentions;
+    private array $globalRetentions = [];
 
     /**
      * @return \DateTime
@@ -66,18 +66,18 @@ class Invoice
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getSeller(): int
+    public function getSeller(): ?int
     {
         return $this->seller;
     }
 
     /**
-     * @param int $seller
+     * @param int|null $seller
      * @return $this
      */
-    public function setSeller(int $seller): static
+    public function setSeller(?int $seller): static
     {
         $this->seller = $seller;
         return $this;

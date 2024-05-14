@@ -2,13 +2,17 @@
 
 use Sergio\SdkPhpSiigo\Api\Customer;
 use Sergio\SdkPhpSiigo\Model\Customer as CustomerModel;
+use Sergio\SdkPhpSiigo\Api\Invoice;
 
 require '../vendor/autoload.php';
 require_once 'Client.php';
 
 try {
     $client = new Client();
+
+    // Customer
     $customerApi = new Customer($client);
+    $customerModel = createCustomerModel();
 
     // get client for identification
     $responseCustomer = $customerApi->getAll(['identification' => '141222333', 'page' => 1, 'page_size' => 1]);
@@ -19,17 +23,21 @@ try {
     if (!empty($body['results'])) {
         $customer = $body['results'][0];
     } else {
-        $responseCreateCustomer = $customerApi->create(createCustomerModel());
+        $responseCreateCustomer = $customerApi->create($customerModel);
         $bodyCreate = json_decode((string) $responseCreateCustomer->getBody(), true);
         $customer = $bodyCreate;
     }
 
     // update client
-    $responseUpdateCustomer = $customerApi->update($customer['id'], createCustomerModel());
+    $responseUpdateCustomer = $customerApi->update($customer['id'], $customerModel);
     $bodyUpdateCustomer = json_decode((string) $responseUpdateCustomer->getBody(), true);
 
+    // Invoice
+    $invoiceApi = new Invoice($client);
 
-
+    // create invoice
+    $responseCreateInvoice = $invoiceApi->create(createInvoice());
+    $boydCreateInvoice = json_decode((string) $responseCreateInvoice->getBody(), true);
 
     return;
 }catch (\GuzzleHttp\Exception\ClientException $e) {
@@ -37,13 +45,13 @@ try {
     $body = json_decode((string) $responseError, true);
     echo $responseError;
     return;
-}catch (Exception $ex) {
+}catch (Throwable $ex) {
     var_dump($ex->getMessage());
     echo $ex->getMessage();
     return;
 }
 
-function createCustomerModel()
+function createCustomerModel(): CustomerModel
 {
     $customer= new CustomerModel();
     $contact = new \Sergio\SdkPhpSiigo\Model\CustomerContact();
@@ -92,4 +100,29 @@ function createCustomerModel()
         );
 
     return $customer;
+}
+
+function createInvoice(): \Sergio\SdkPhpSiigo\Model\Invoice
+{
+    $invoice = new \Sergio\SdkPhpSiigo\Model\Invoice();
+    $invoiceDocument = new \Sergio\SdkPhpSiigo\Model\InvoiceDocument();
+    $payment = new \Sergio\SdkPhpSiigo\Model\Payment();
+    $item = new \Sergio\SdkPhpSiigo\Model\Item();
+
+    $invoice->setDate(new DateTime())
+        ->setDocument($invoiceDocument->setId(28220))
+        ->setObservations('prueba 1 facturas')
+        ->setSeller(62)
+        ->setPayments([
+            $payment->setValue(1000)
+                ->setDueDate(new DateTime())
+                ->setId(8057)
+        ])->setItems([
+            $item->setCode('GAT-02-23')
+            ->setDescription('pago de prueba 1')
+            ->setPrice(1000)
+            ->setQuantity(1)
+        ])->setCustomer(createCustomerModel());
+
+    return $invoice;
 }
