@@ -2,9 +2,6 @@
 
 namespace Sergio\SdkPhpSiigo\Model;
 
-/**
- *
- */
 class CustomerFiscalResponsibilities
 {
     private string $code = 'R-99-PN';

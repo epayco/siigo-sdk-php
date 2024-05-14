@@ -2,9 +2,6 @@
 
 namespace Sergio\SdkPhpSiigo\Model;
 
-/**
- *
- */
 class Customer
 {
     private string $type = 'Customer';

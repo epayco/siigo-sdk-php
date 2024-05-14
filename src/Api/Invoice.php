@@ -10,10 +10,10 @@ use Sergio\SdkPhpSiigo\Model\Invoice as InvoiceModel;
 final class Invoice extends AbstractApi
 {
     /**
-     * @param array $query ['page' => 1, 'page_size' => 10, 'identification' => '', ...]
+     * @param array $query ['name' => '', ...]
      * @return ResponseInterface
      * @throws GuzzleException
-     * @see https://siigoapi.docs.apiary.io/#reference/clientes/consultar-cliente/consultar-cliente
+     * @see https://siigoapi.docs.apiary.io/#reference/facturas-de-venta/listar-facturas
      */
     public function getAll(array $query = []): ResponseInterface
     {
@@ -21,7 +21,7 @@ final class Invoice extends AbstractApi
 
         return $this
             ->getClient()
-            ->request('GET', sprintf('%s/customers?%s', self::API_VERSION, $query),
+            ->request('GET', sprintf('%s/invoices?%s', self::API_VERSION, $query),
         );
     }
 
@@ -40,13 +40,20 @@ final class Invoice extends AbstractApi
             ->request('POST', sprintf('%s/invoices', self::API_VERSION), $data);
     }
 
+    /**
+     * @param string $id
+     * @param InvoiceModel $invoice
+     * @return ResponseInterface
+     * @throws GuzzleException
+     * @see https://siigoapi.docs.apiary.io/#reference/facturas-de-venta/edicion-de-facturas-de-venta
+     */
     public function update(string $id, InvoiceModel $invoice): ResponseInterface
     {
         $data = $this->fillModel($invoice);
 
         return $this
             ->getClient()
-            ->request('PUT', sprintf('%s/customers/%s', self::API_VERSION, $id), $data);
+            ->request('PUT', sprintf('%s/invoices/%s', self::API_VERSION, $id), $data);
     }
 
     private function fillModel(InvoiceModel $invoice): array

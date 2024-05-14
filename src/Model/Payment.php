@@ -2,16 +2,15 @@
 
 namespace Sergio\SdkPhpSiigo\Model;
 
-/**
- *
- */
+use DateTime;
+
 class Payment
 {
     private int $id;
 
     private float $value;
 
-    private \DateTime $dueDate;
+    private DateTime $dueDate;
 
     /**
      * @return int
@@ -50,18 +49,18 @@ class Payment
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getDueDate(): \DateTime
+    public function getDueDate(): DateTime
     {
         return $this->dueDate;
     }
 
     /**
-     * @param \DateTime $dueDate
+     * @param DateTime $dueDate
      * @return $this
      */
-    public function setDueDate(\DateTime $dueDate): static
+    public function setDueDate(DateTime $dueDate): static
     {
         $this->dueDate = $dueDate;
         return $this;

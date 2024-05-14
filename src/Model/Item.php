@@ -67,8 +67,9 @@ class Item
 
     /**
      * @param int $quantity
+     * @return Item
      */
-    public function setQuantity($quantity): static
+    public function setQuantity(int $quantity): static
     {
         $this->quantity = $quantity;
         return $this;

@@ -2,9 +2,6 @@
 
 namespace Sergio\SdkPhpSiigo\Model;
 
-/**
- *
- */
 class CustomerContact
 {
     private string $firstName;

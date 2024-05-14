@@ -16,10 +16,11 @@ class Tax
 
     /**
      * @param int $id
-     * @return void
+     * @return Tax
      */
-    public function setId(int $id): void
+    public function setId(int $id): static
     {
         $this->id = $id;
+        return $this;
     }
 }

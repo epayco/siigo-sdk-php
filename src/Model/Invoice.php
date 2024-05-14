@@ -2,9 +2,11 @@
 
 namespace Sergio\SdkPhpSiigo\Model;
 
+use DateTime;
+
 class Invoice
 {
-    private \DateTime $date;
+    private DateTime $date;
 
     private InvoiceDocument $document;
 
@@ -30,18 +32,18 @@ class Invoice
     private array $globalRetentions = [];
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getDate(): \DateTime
+    public function getDate(): DateTime
     {
         return $this->date;
     }
 
     /**
-     * @param \DateTime $date
+     * @param DateTime $date
      * @return $this
      */
-    public function setDate(\DateTime $date): static
+    public function setDate(DateTime $date): static
     {
         $this->date = $date;
         return $this;

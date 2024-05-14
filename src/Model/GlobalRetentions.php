@@ -2,9 +2,6 @@
 
 namespace Sergio\SdkPhpSiigo\Model;
 
-/**
- *
- */
 class GlobalRetentions
 {
     private int $id;
@@ -19,10 +16,11 @@ class GlobalRetentions
 
     /**
      * @param int $id
-     * @return void
+     * @return GlobalRetentions
      */
-    public function setId(int $id): void
+    public function setId(int $id): static
     {
         $this->id = $id;
+        return $this;
     }
 }
