@@ -4,6 +4,8 @@ use Sergio\SdkPhpSiigo\Api\Customer;
 use Sergio\SdkPhpSiigo\Model\Customer as CustomerModel;
 use Sergio\SdkPhpSiigo\Api\Invoice;
 use Sergio\SdkPhpSiigo\Model\Payment as PaymentModel;
+use Sergio\SdkPhpSiigo\Api\Product;
+use Sergio\SdkPhpSiigo\Model\Product as ProductModel;
 
 require '../vendor/autoload.php';
 require_once 'Client.php';
@@ -16,7 +18,7 @@ try {
     $customerModel = createCustomerModel();
 
     // get client for identification
-    $responseCustomer = $customerApi->getAll(['identification' => '141222333', 'page' => 1, 'page_size' => 1]);
+    $responseCustomer = $customerApi->getAll(['identification' => '141222333']);
     $body = json_decode((string) $responseCustomer->getBody(), true);
 
 
@@ -40,9 +42,22 @@ try {
     $responseCreateInvoice = $invoiceApi->create(createInvoice());
     $boydCreateInvoice = json_decode((string) $responseCreateInvoice->getBody(), true);
 
-    // consultar factura
-    $responseInvoice = $invoiceApi->getAll(['name' => 'FV-555-6', 'page' => 1, 'page_size' => 1]);
+    // get invoice for name
+    $responseInvoice = $invoiceApi->getAll(['name' => 'FV-555-6']);
     $bodyResponseInvoice = json_decode((string) $responseInvoice->getBody(), true);
+
+
+    // Producto --------------------------------------------------------------------------------------------------------
+    $productApi = new Product($client);
+
+    // get product for code
+    $responseProduct = $productApi->getAll(['code' => 'GAT-02-24']);
+    $bodyResponseCreateProduct = json_decode((string) $responseProduct->getBody(), true);
+
+    // create product
+    $responseCreateProduct = $productApi->create(createProduct());
+    $bodyResponseCreateProduct = json_decode((string) $responseCreateProduct->getBody(), true);
+
 
     return;
 }catch (\GuzzleHttp\Exception\ClientException $e) {
@@ -139,4 +154,12 @@ function createInvoice(): \Sergio\SdkPhpSiigo\Model\Invoice
         ])->setCustomer(createCustomerModel());
 
     return $invoice;
+}
+
+function createProduct(): ProductModel
+{
+    return (new ProductModel())
+        ->setCode('GAT-02-24')
+        ->setName('Plan mensual 100 transacciones')
+        ->setAccountGroup(1562);
 }
