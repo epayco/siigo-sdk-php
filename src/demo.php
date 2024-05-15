@@ -11,7 +11,12 @@ require '../vendor/autoload.php';
 require_once 'Client.php';
 
 try {
-    $client = new Client();
+    $username = '';
+    $siigoAccessKey = '';
+    //$token = 'token'; // optional
+    $client = new Client($username, $siigoAccessKey);
+    $token = $client->login();
+
 
     // Customer --------------------------------------------------------------------------------------------------------
     $customerApi = new Customer($client);

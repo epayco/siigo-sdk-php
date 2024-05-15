@@ -12,13 +12,15 @@ class Client
     private ?string $token = null;
     private array $headers = [];
 
-    public function __construct() {
+    public function __construct(string $username, string $siigoAccessKey, string $token = null)
+    {
         $this->client = new HttpClient([
             'base_uri' => 'https://api.siigo.com/',
         ]);
 
-        $this->siigoAccessKey = '';
-        $this->username = '';
+        $this->siigoAccessKey = $siigoAccessKey;
+        $this->username = $username;
+        $this->token = $token;
         $this->headers = [
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
