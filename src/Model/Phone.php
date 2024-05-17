@@ -1,6 +1,6 @@
 <?php
 
-namespace Sergio\SdkPhpSiigo\Model;
+namespace Epayco\SdkPhpSiigo\Model;
 
 class Phone
 {

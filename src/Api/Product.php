@@ -1,11 +1,11 @@
 <?php
 
-namespace Sergio\SdkPhpSiigo\Api;
+namespace Epayco\SdkPhpSiigo\Api;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
-use Sergio\SdkPhpSiigo\Api\AbstractApi;
-use Sergio\SdkPhpSiigo\Model\Product as ProductModel;
+use Epayco\SdkPhpSiigo\Api\AbstractApi;
+use Epayco\SdkPhpSiigo\Model\Product as ProductModel;
 
 final class Product extends AbstractApi
 {

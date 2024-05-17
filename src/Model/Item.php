@@ -1,8 +1,8 @@
 <?php
 
-namespace Sergio\SdkPhpSiigo\Model;
+namespace Epayco\SdkPhpSiigo\Model;
 
-use Sergio\SdkPhpSiigo\Model\Tax;
+use Epayco\SdkPhpSiigo\Model\Tax;
 
 class Item
 {

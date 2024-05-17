@@ -1,11 +1,11 @@
 <?php
 
-namespace Sergio\SdkPhpSiigo\Api;
+namespace Epayco\SdkPhpSiigo\Api;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
-use Sergio\SdkPhpSiigo\Api\AbstractApi;
-use Sergio\SdkPhpSiigo\Model\Invoice as InvoiceModel;
+use Epayco\SdkPhpSiigo\Api\AbstractApi;
+use Epayco\SdkPhpSiigo\Model\Invoice as InvoiceModel;
 
 final class Invoice extends AbstractApi
 {

@@ -8,7 +8,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Sergio\\SdkPhpSiigo\\": "src/"
+            "Epayco\\SdkPhpSiigo\\": "src/"
         }
     },
     "authors": [

@@ -1,5 +1,7 @@
 <?php
 
+namespace Epayco\SdkPhpSiigo;
+
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Sergio\SdkPhpSiigo\Api;
+namespace Epayco\SdkPhpSiigo\Api;
 
-use Client;
+use Epayco\SdkPhpSiigo\Client;
 
 class AbstractApi
 {

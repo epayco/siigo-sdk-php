@@ -1,11 +1,11 @@
 <?php
 
-use Sergio\SdkPhpSiigo\Api\Customer;
-use Sergio\SdkPhpSiigo\Model\Customer as CustomerModel;
-use Sergio\SdkPhpSiigo\Api\Invoice;
-use Sergio\SdkPhpSiigo\Model\Payment as PaymentModel;
-use Sergio\SdkPhpSiigo\Api\Product;
-use Sergio\SdkPhpSiigo\Model\Product as ProductModel;
+use Epayco\SdkPhpSiigo\Api\Customer;
+use Epayco\SdkPhpSiigo\Model\Customer as CustomerModel;
+use Epayco\SdkPhpSiigo\Api\Invoice;
+use Epayco\SdkPhpSiigo\Model\Payment as PaymentModel;
+use Epayco\SdkPhpSiigo\Api\Product;
+use Epayco\SdkPhpSiigo\Model\Product as ProductModel;
 
 require '../vendor/autoload.php';
 require_once 'Client.php';
@@ -79,11 +79,11 @@ try {
 function createCustomerModel(): CustomerModel
 {
     $customer= new CustomerModel();
-    $contact = new \Sergio\SdkPhpSiigo\Model\CustomerContact();
-    $city = new \Sergio\SdkPhpSiigo\Model\City();
-    $phone = new \Sergio\SdkPhpSiigo\Model\Phone();
-    $address = new \Sergio\SdkPhpSiigo\Model\CustomerAddress();
-    $fiscalResponsibilities = new \Sergio\SdkPhpSiigo\Model\CustomerFiscalResponsibilities();
+    $contact = new \Epayco\SdkPhpSiigo\Model\CustomerContact();
+    $city = new \Epayco\SdkPhpSiigo\Model\City();
+    $phone = new \Epayco\SdkPhpSiigo\Model\Phone();
+    $address = new \Epayco\SdkPhpSiigo\Model\CustomerAddress();
+    $fiscalResponsibilities = new \Epayco\SdkPhpSiigo\Model\CustomerFiscalResponsibilities();
 
     $customer->setType('Customer')
         ->setPersonType('Person')
@@ -126,13 +126,13 @@ function createCustomerModel(): CustomerModel
     return $customer;
 }
 
-function createInvoice(): \Sergio\SdkPhpSiigo\Model\Invoice
+function createInvoice(): \Epayco\SdkPhpSiigo\Model\Invoice
 {
-    $invoice = new \Sergio\SdkPhpSiigo\Model\Invoice();
-    $invoiceDocument = new \Sergio\SdkPhpSiigo\Model\InvoiceDocument();
-    $item = new \Sergio\SdkPhpSiigo\Model\Item();
-    $globalRetentions = new \Sergio\SdkPhpSiigo\Model\GlobalRetentions();
-    $tax = new \Sergio\SdkPhpSiigo\Model\Tax();
+    $invoice = new \Epayco\SdkPhpSiigo\Model\Invoice();
+    $invoiceDocument = new \Epayco\SdkPhpSiigo\Model\InvoiceDocument();
+    $item = new \Epayco\SdkPhpSiigo\Model\Item();
+    $globalRetentions = new \Epayco\SdkPhpSiigo\Model\GlobalRetentions();
+    $tax = new \Epayco\SdkPhpSiigo\Model\Tax();
 
     $invoice->setDate(new DateTime())
         ->setDocument($invoiceDocument->setId(28220))
