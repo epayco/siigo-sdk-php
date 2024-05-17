@@ -1,5 +1,5 @@
 {
-    "name": "epayco/sdk-php-siigo",
+    "name": "epayco/siigo-sdk-php",
     "description": "PHP SDK for siigo connection",
     "type": "library",
     "require": {
