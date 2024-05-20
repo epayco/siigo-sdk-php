@@ -16,6 +16,8 @@ class Customer
 
     private string $lastName;
 
+    private string $businessName;
+
     private string $commercialName;
 
     private int $branchOffice = 0;
@@ -331,5 +333,23 @@ class Customer
     public function getLastName(): string
     {
         return $this->lastName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBusinessName(): string
+    {
+        return $this->businessName;
+    }
+
+    /**
+     * @param string $businessName
+     * @return $this
+     */
+    public function setBusinessName(string $businessName): static
+    {
+        $this->businessName = $businessName;
+        return $this;
     }
 }

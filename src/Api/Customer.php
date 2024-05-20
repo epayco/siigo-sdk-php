@@ -58,12 +58,17 @@ final class Customer extends AbstractApi
 
     private function fillModel(CustomerModel $customer): array
     {
+        $name = $customer->getPersonType() === 'Company' ? [$customer->getBusinessName()] : [
+            $customer->getName(),
+            $customer->getLastName()
+        ];
+
         return [
             'type' => $customer->getType(),
             'person_type' => $customer->getPersonType(),
             'id_type' => $customer->getIdType(),
             'identification' => $customer->getIdentification(),
-            'name' => [$customer->getName(), $customer->getLastName()],
+            'name' => $name,
             'commercial_name' => $customer->getCommercialName(),
             'branch_office' => $customer->getBranchOffice(),
             'active' => $customer->isActive(),
