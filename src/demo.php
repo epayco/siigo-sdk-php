@@ -1,6 +1,7 @@
 <?php
 
 use Epayco\SdkPhpSiigo\Api\Customer;
+use Epayco\SdkPhpSiigo\Client;
 use Epayco\SdkPhpSiigo\Model\Customer as CustomerModel;
 use Epayco\SdkPhpSiigo\Api\Invoice;
 use Epayco\SdkPhpSiigo\Model\Payment as PaymentModel;
@@ -13,8 +14,9 @@ require_once 'Client.php';
 try {
     $username = '';
     $siigoAccessKey = '';
+    $siigopartnerId = '';
     //$token = 'token'; // optional
-    $client = new Client($username, $siigoAccessKey);
+    $client = new Client($username, $siigoAccessKey, $siigopartnerId);
     $token = $client->login();
 
 

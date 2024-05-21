@@ -13,20 +13,27 @@ class Client
     private string $username;
     private ?string $token = null;
     private array $headers = [];
+    private string $partnerId;
 
-    public function __construct(string $username, string $siigoAccessKey, string $token = null)
-    {
+    public function __construct(
+        string $username,
+        string $siigoAccessKey,
+        string $partnerId,
+        string $token = null,
+    ) {
         $this->client = new HttpClient([
             'base_uri' => 'https://api.siigo.com/',
         ]);
 
         $this->siigoAccessKey = $siigoAccessKey;
         $this->username = $username;
+        $this->partnerId = $partnerId;
         $this->token = $token;
+
         $this->headers = [
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
-            'Partner-Id' => 'facturacionePayco',
+            'Partner-Id' => $this->partnerId,
         ];
     }
 

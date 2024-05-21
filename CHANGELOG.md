@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2024-05-21### Added
+
+- Add partner id to headers and client constructor
 
 ## [1.0.0] - 2024-05-20
 
