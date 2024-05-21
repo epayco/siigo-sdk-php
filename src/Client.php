@@ -14,6 +14,7 @@ class Client
     private ?string $token = null;
     private array $headers = [];
     private string $partnerId;
+    private array $lastRequestInfo = [];
 
     public function __construct(
         string $username,
@@ -53,6 +54,14 @@ class Client
                 $this->login();
             }
 
+            // save last request info
+            $this->lastRequestInfo = [
+                'method' => $method,
+                'url' => $url,
+                'data' => $data,
+                'headers' => $this->headers,
+            ];
+
             return $this->client->request($method, $url, [
                 'json' => $data,
                 'headers' => $this->headers,
@@ -80,6 +89,14 @@ class Client
             'username' => $this->username,
             'access_key' => $this->siigoAccessKey,
         ];
+
+        $this->lastRequestInfo = [
+            'method' => 'POST',
+            'url' => 'auth',
+            'data' => $body,
+            'headers' => $this->headers,
+        ];
+
         $response = $this->client->request('POST', 'auth', [
             'json' => $body,
             'headers' => $this->headers,
@@ -97,5 +114,10 @@ class Client
     public function getToken(): ?string
     {
         return $this->token;
+    }
+
+    public function getLastRequestInfo(): array
+    {
+        return $this->lastRequestInfo;
     }
 }
